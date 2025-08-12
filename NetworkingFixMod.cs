@@ -52,10 +52,11 @@ namespace NetworkingFixMod
             if (!NetworkManager.IsActiveAsClient && (NetworkManager.IsClient || NetworkManager.IsServer) && lineSplit.Length == 1 && !ulong.TryParse(lineSplit[0], out var ignored))
             {
                 string name = lineSplit[0];
-                string clientId = NetworkBase.Clients.Find(client => client.name == name)?.ClientId.ToString();
-                if (clientId != null)
+                Client user = NetworkBase.Clients.Find(client => client.name == name);
+                if (user != null)
                 {
-                    lineSplit[0] = clientId;
+                    ConsoleWindow.PrintAction($"client '{user.name}' kicked from game");
+                    user.Disconnect();
                 }
                 else
                 {
@@ -67,8 +68,8 @@ namespace NetworkingFixMod
                         ConsoleWindow.Print("Possible Options:");
                         clients.ForEach(client => ConsoleWindow.Print(client.name));
                     }
-                    return false;
                 }
+                return false;
             }
 
             return true;
