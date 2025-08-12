@@ -49,7 +49,7 @@ namespace NetworkingFixMod
         [HarmonyPatch(typeof(KickCommand), "Kick"), HarmonyPrefix]
         static bool KickCommand_Kick(ref string[] lineSplit)
         {
-            if (!NetworkManager.IsActiveAsClient && (NetworkManager.IsClient || NetworkManager.IsServer) && lineSplit.Length == 1 && !int.TryParse(lineSplit[0], out int ignored))
+            if (!NetworkManager.IsActiveAsClient && (NetworkManager.IsClient || NetworkManager.IsServer) && lineSplit.Length == 1 && !ulong.TryParse(lineSplit[0], out var ignored))
             {
                 string name = lineSplit[0];
                 string clientId = NetworkBase.Clients.Find(client => client.name == name)?.ClientId.ToString();
