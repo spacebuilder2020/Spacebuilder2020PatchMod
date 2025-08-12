@@ -49,10 +49,12 @@ namespace NetworkingFixMod
         [HarmonyPatch(typeof(KickCommand), "Kick"), HarmonyPrefix]
         static bool KickCommand_Kick(ref string[] lineSplit)
         {
-            if (!NetworkManager.IsActiveAsClient && (NetworkManager.IsClient || NetworkManager.IsServer) && lineSplit.Length == 1 && !ulong.TryParse(lineSplit[0], out var ignored))
+            if (!NetworkManager.IsActiveAsClient && (NetworkManager.IsClient || NetworkManager.IsServer) && lineSplit.Length == 1)
             {
-                string name = lineSplit[0];
-                Client user = NetworkBase.Clients.Find(client => client.name == name);
+                string nameOrID = lineSplit[0];
+                bool parsed = ulong.TryParse(lineSplit[0], out var clientId); 
+                Client user = parsed ? Client.Find(clientId) : NetworkBase.Clients.Find(client => client.name == nameOrID);
+
                 if (user != null)
                 {
                     ConsoleWindow.PrintAction($"client '{user.name}' kicked from game");
@@ -60,13 +62,18 @@ namespace NetworkingFixMod
                 }
                 else
                 {
-                    ConsoleWindow.PrintError($"Unable to find client by name: {name}", true);
+                    ConsoleWindow.PrintError($"Unable to find client by {(parsed ? "id" :"name")}: {nameOrID}", true);
                     
-                    var clients = NetworkBase.Clients.FindAll(client => client.name.ToLower().StartsWith(name.ToLower()) || client.name.ToLower().Contains(name.ToLower()));
-                    if (clients.Count > 0)
+                    if (!parsed)
                     {
-                        ConsoleWindow.Print("Possible Options:");
-                        clients.ForEach(client => ConsoleWindow.Print(client.name));
+                        var clients = NetworkBase.Clients.FindAll(client =>
+                            client.name.ToLower().StartsWith(nameOrID.ToLower()) ||
+                            client.name.ToLower().Contains(nameOrID.ToLower()));
+                        if (clients.Count > 0)
+                        {
+                            ConsoleWindow.Print("Possible Options:");
+                            clients.ForEach(client => ConsoleWindow.Print(client.name));
+                        }
                     }
                 }
                 return false;
