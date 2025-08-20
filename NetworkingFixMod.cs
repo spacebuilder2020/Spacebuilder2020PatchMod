@@ -81,5 +81,13 @@ namespace NetworkingFixMod
 
             return true;
         }
+        
+        [HarmonyPatch(typeof(Item), "UpdateDecayTimes"), HarmonyPrefix]
+        static bool Item_UpdateDecayTimes(ref Item __instance) {
+            Traverse.Create(__instance).Method("set_TimeToDecayFromNowInSeconds", 
+                    (int) ((__instance.DamageState.MaxDamage - (double) __instance.DamageState.Decay) / ( __instance.CurrentDecayRate * 60.0)))
+                .GetValue();
+            return false;
+        }
     }
 }
