@@ -37,9 +37,12 @@ Fix decay time to take into account item max damage.
   <ChangeLog>
     [h3]Version 1.0:[/h3]
     [list]
-    [*]Initial release
+    [*] Patches connections to prevent a timeout when a client is kicked at initial connection. (Invalid password, blacklisting, invalid version).
+    [*] Extends Kick to allow player name instead of steamid.
+    [*] Fix decay time to take into account item max damage.
     [/list]
   </ChangeLog>
+  <WorkshopHandle>3552686002</WorkshopHandle>
   <!-- StationeersMods and BepInEx tags for Steam workshop page will be automatically added by the framework when publishing -->
   <Tags>
     <Tag>Mod</Tag>
