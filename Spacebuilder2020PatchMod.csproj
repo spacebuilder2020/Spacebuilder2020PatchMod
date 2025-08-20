@@ -63,7 +63,7 @@
         <_CopyItemsAbout Include="$(ProjectDir)\About\**\*.*" />
     </ItemGroup>
     <Target Name="AfterBuild">
-        <RemoveDir Directories="$(SavePath)\mods\$(ModName)" />
+        <RemoveDir Directories="$(SavePath)\mods\$(ModName)\**" />
         <Copy SourceFiles="$(ProjectDir)\$(ModName).info" DestinationFolder="$(SavePath)\mods\$(ModName)" ContinueOnError="false" />
         <Copy SourceFiles="$(ProjectDir)\bin\Debug\$(ModName).dll" DestinationFolder="$(SavePath)\mods\$(ModName)" ContinueOnError="true" />
         <Copy SourceFiles="@(_CopyItemsGameData)" DestinationFolder="$(SavePath)\mods\$(ModName)\GameData\%(RecursiveDir)" ContinueOnError="true" />
