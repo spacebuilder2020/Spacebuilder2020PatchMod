@@ -10,11 +10,11 @@ using Assets.Scripts.Util;
 using UnityEngine;
 using Util.Commands;
 
-namespace NetworkingFixMod
+namespace Spacebuilder2020PatchMod
 {
     
-    [StationeersMod("NetworkingFixMod", "NetworkingFixMod [StationeersMods]", "1.0.0")]
-    class NetworkingFixMod : ModBehaviour
+    [StationeersMod("Spacebuilder2020PatchMod", "Spacebuilder2020PatchMod [StationeersMods]", "1.0.0")]
+    class Spacebuilder2020PatchMod : ModBehaviour
     {
         public override void OnLoaded(ContentHandler contentHandler)
         {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name>NetworkingFixMod</Name>
+  <Name>Spacebuilder2020PatchMod</Name>
   <Author>Spacebuilder2020</Author>
   <Version>1.0</Version>
   <!-- Steam description using steam styling tags for Steam workshop page -->
-  <Description>[h1]NetworkingFixMod[/h1]
+  <Description>[h1]Spacebuilder2020PatchMod[/h1]
     [b]WARNING:[/b] This is a StationeersLaunchPad Plugin Mod. It requires Bepinex to be installed with the StationeersLaunchPad plugin.
     See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
     
@@ -14,6 +14,9 @@
     
     Extends Kick command so that a player name can be specified instead of a steamid.
       Requires exact name, if name is not exact, will try to find possible options and print them out.
+
+    Fix the decay time method to use the max damage value instead of hardcoding 100.
+      Reason:  by default, the max damage value is set to 200 when items are initialized.  Thus, when an items time to decay is shown, it is inaccurate.
   </Description>
   <!-- Ingame Description using TMP tags for Workshop menu -->
   <InGameDescription>
@@ -24,6 +27,8 @@ See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
 Patches connections to prevent a timeout when a client is kicked at initial connection. (Invalid password, blacklisting, invalid version).
 
 Extends Kick to allow player name instead of steamid.
+
+Fix decay time to take into account item max damage.
 ]]>
   </InGameDescription>
   <!-- All contents of ChangeLog should be changed for each publication for Steam workshop page -->
