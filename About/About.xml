@@ -42,7 +42,9 @@ Fix decay time to take into account item max damage.
   </ChangeLog>
   <!-- StationeersMods and BepInEx tags for Steam workshop page will be automatically added by the framework when publishing -->
   <Tags>
-    <Tag>StationeersMods</Tag>
+    <Tag>Mod</Tag>
+    <Tag>BepInEx</Tag>
+    <Tag>StationeersLaunchPad</Tag>
   </Tags>
   <!-- Automatic downloads of dependencies -->
   <Dependencies />
