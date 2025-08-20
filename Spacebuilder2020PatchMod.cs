@@ -26,14 +26,14 @@ namespace Spacebuilder2020PatchMod
             //     true,
             //     "Boolean description");
             
-            Harmony harmony = new Harmony("NetworkingFix");
+            Harmony harmony = new Harmony("Spacebuilder2020PatchMod");
             harmony.PatchAll();
-            ConsoleWindow.Print("NetworkingFix Loaded!");
+            ConsoleWindow.Print("Spacebuilder2020PatchMod Loaded!");
         }
     }
 
     [HarmonyPatch]
-    class NetworkServerPatch
+    class Spacebuilder2020Patches
     {
         [HarmonyPatch(typeof(NetworkServer), "HandleBlacklisting"), HarmonyPostfix]
         static void NetworkServer_HandleBlacklisting(ref NetworkMessages.VerifyPlayer msg, ref Client client) =>
