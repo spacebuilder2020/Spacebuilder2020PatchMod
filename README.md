@@ -1,5 +1,4 @@
-﻿# This is a StationeersLaunchPad Plugin Mod. It requires Bepinex to be installed with the StationeersLaunchPad plugin.
-See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
+﻿# [Spacebuilder2020's Patch Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3552686002)
 
     Multiple Patches including:
 
