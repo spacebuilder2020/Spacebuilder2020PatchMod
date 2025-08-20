@@ -63,11 +63,11 @@
         <_CopyItemsAbout Include="$(ProjectDir)\About\**\*.*" />
     </ItemGroup>
     <Target Name="AfterBuild">
-        <RemoveDir Directories="$(UserDir)\OneDrive\Documents\My Games\Stationeers-modded\mods\$(ModName)" />
-        <Copy SourceFiles="$(ProjectDir)\$(ModName).info" DestinationFolder="$(UserDir)\OneDrive\Documents\My Games\Stationeers-modded\mods\$(ModName)" ContinueOnError="false" />
-        <Copy SourceFiles="$(ProjectDir)\bin\Debug\$(ModName).dll" DestinationFolder="$(UserDir)\OneDrive\Documents\My Games\Stationeers-modded\mods\$(ModName)" ContinueOnError="true" />
-        <Copy SourceFiles="@(_CopyItemsGameData)" DestinationFolder="$(UserDir)\OneDrive\Documents\My Games\Stationeers-modded\mods\$(ModName)\GameData\%(RecursiveDir)" ContinueOnError="true" />
-        <Copy SourceFiles="@(_CopyItemsAbout)" DestinationFolder="$(UserDir)\OneDrive\Documents\My Games\Stationeers-modded\mods\$(ModName)\About\%(RecursiveDir)" ContinueOnError="true" />
-        <Copy SourceFiles="$(ProjectDir)\bin\Debug\$(ModName).pdb" DestinationFolder="$(UserDir)\OneDrive\Documents\My Games\Stationeers-modded\mods\$(ModName)" ContinueOnError="true"   Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
+        <RemoveDir Directories="$(SavePath)\mods\$(ModName)" />
+        <Copy SourceFiles="$(ProjectDir)\$(ModName).info" DestinationFolder="$(SavePath)\mods\$(ModName)" ContinueOnError="false" />
+        <Copy SourceFiles="$(ProjectDir)\bin\Debug\$(ModName).dll" DestinationFolder="$(SavePath)\mods\$(ModName)" ContinueOnError="true" />
+        <Copy SourceFiles="@(_CopyItemsGameData)" DestinationFolder="$(SavePath)\mods\$(ModName)\GameData\%(RecursiveDir)" ContinueOnError="true" />
+        <Copy SourceFiles="@(_CopyItemsAbout)" DestinationFolder="$(SavePath)\mods\$(ModName)\About\%(RecursiveDir)" ContinueOnError="true" />
+        <Copy SourceFiles="$(ProjectDir)\bin\Debug\$(ModName).pdb" DestinationFolder="$(SavePath)\mods\$(ModName)" ContinueOnError="true"   Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " />
     </Target>
 </Project>
