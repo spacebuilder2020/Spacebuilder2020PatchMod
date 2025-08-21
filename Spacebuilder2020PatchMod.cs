@@ -75,6 +75,15 @@ namespace Spacebuilder2020PatchMod
                             clients.ForEach(client => ConsoleWindow.Print(client.name));
                         }
                     }
+                    else
+                    {
+                        ConsoleWindow.Print("Trying a kick by exact steam id");
+                        NetworkManager.CloseP2PConnectionServer(new Client
+                        {
+                            ClientId = clientId,
+                            connectionMethod = ConnectionMethod.FacepunchSteamP2P
+                        });
+                    }
                 }
                 return false;
             }

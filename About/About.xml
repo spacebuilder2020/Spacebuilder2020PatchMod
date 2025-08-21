@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name>Spacebuilder2020PatchMod</Name>
+  <Name>Spacebuilder2020's PatchMod</Name>
   <Author>Spacebuilder2020</Author>
-  <Version>1.0</Version>
+  <Version>1.1</Version>
   <!-- Steam description using steam styling tags for Steam workshop page -->
-  <Description>[h1]Spacebuilder2020PatchMod[/h1]
+  <Description>[h1]Spacebuilder2020's PatchMod[/h1]
     [b]WARNING:[/b] This is a StationeersLaunchPad Plugin Mod. It requires Bepinex to be installed with the StationeersLaunchPad plugin.
     See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
     
@@ -22,7 +22,7 @@
   </Description>
   <!-- Ingame Description using TMP tags for Workshop menu -->
   <InGameDescription>
-    <![CDATA[<size="30"><color=#ffa500> Spacebuilder2020PatchMod </color></size>
+    <![CDATA[<size="30"><color=#ffa500> Spacebuilder2020's PatchMod </color></size>
 <b>WARNING:</b> <color=#ff0000>This is a StationeersLaunchPad Plugin Mod. It requires Bepinex to be installed with the StationeersLaunchPad plugin.</color>
 See: https://github.com/StationeersLaunchPad/StationeersLaunchPad
 
@@ -35,11 +35,9 @@ Fix decay time to take into account item max damage.
   </InGameDescription>
   <!-- All contents of ChangeLog should be changed for each publication for Steam workshop page -->
   <ChangeLog>
-    [h3]Version 1.0:[/h3]
+    [h3]Version 1.1:[/h3]
     [list]
-    [*] Patches connections to prevent a timeout when a client is kicked at initial connection. (Invalid password, blacklisting, invalid version).
-    [*] Extends Kick to allow player name instead of steamid.
-    [*] Fix decay time to take into account item max damage.
+    [*] Improved Kick by steam id -- allows kicking players who are not fully joined and in the player list
     [/list]
   </ChangeLog>
   <WorkshopHandle>3552686002</WorkshopHandle>
