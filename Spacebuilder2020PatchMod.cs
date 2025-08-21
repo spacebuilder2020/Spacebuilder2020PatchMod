@@ -7,6 +7,7 @@ using Assets.Scripts.Localization2;
 using Assets.Scripts.Networking;
 using Assets.Scripts.Objects;
 using Assets.Scripts.Util;
+using Steamworks;
 using UnityEngine;
 using Util.Commands;
 
@@ -62,7 +63,7 @@ namespace Spacebuilder2020PatchMod
                 }
                 else
                 {
-                    ConsoleWindow.PrintError($"Unable to find client by {(parsed ? "id" :"name")}: {nameOrID}", true);
+                    ConsoleWindow.PrintError($"Unable to find client by {(parsed ? "id" :"name")}: '{nameOrID}' in list", true);
                     
                     if (!parsed)
                     {
@@ -77,12 +78,17 @@ namespace Spacebuilder2020PatchMod
                     }
                     else
                     {
-                        ConsoleWindow.Print("Trying a kick by exact steam id");
-                        NetworkManager.CloseP2PConnectionServer(new Client
+                        ConsoleWindow.PrintAction($"Trying a kick by exact steam id: '{clientId}'");
+                        
+                        if (SteamNetworking.CloseP2PSessionWithUser(clientId))
                         {
-                            ClientId = clientId,
-                            connectionMethod = ConnectionMethod.FacepunchSteamP2P
-                        });
+                            ConsoleWindow.Print("Successfully kicked by Steam!");
+                        }
+                        else
+                        {
+                            ConsoleWindow.PrintError($"Error kicking by id, user may not be connected!", true);
+                        }
+                        
                     }
                 }
                 return false;
