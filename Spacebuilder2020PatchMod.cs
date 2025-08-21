@@ -78,7 +78,7 @@ namespace Spacebuilder2020PatchMod
                     }
                     else
                     {
-                        ConsoleWindow.PrintAction($"Trying a kick by exact steam id: '{clientId}'");
+                        ConsoleWindow.PrintAction("Trying a kick by exact steam id");
                         
                         if (SteamNetworking.CloseP2PSessionWithUser(clientId))
                         {
@@ -86,7 +86,7 @@ namespace Spacebuilder2020PatchMod
                         }
                         else
                         {
-                            ConsoleWindow.PrintError($"Error kicking by id, user may not be connected!", true);
+                            ConsoleWindow.PrintError("Error kicking by id, user may not be connected!", true);
                         }
                         
                     }
