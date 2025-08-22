@@ -1,4 +1,7 @@
 ﻿# [Spacebuilder2020's Patch Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=3552686002)
+This is a bug fix mod.  It may contain slight improvements for some features (i.e. kick command), 
+ but for the most part, it just fixes existing logic that is broken in the base game.
+ If this logic is eventually fixed, said patches will be removed in future versions.
 
     Multiple Patches including:
 
