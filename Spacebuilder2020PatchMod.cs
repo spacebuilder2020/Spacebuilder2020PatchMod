@@ -4,6 +4,7 @@ using StationeersMods.Interface;
 using System.IO;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Assets.Scripts.Localization2;
 using Assets.Scripts.Networking;
 using Assets.Scripts.Objects;
@@ -41,8 +42,11 @@ namespace Spacebuilder2020PatchMod
 
         static void DelayedClose(Client client)
         {
-            Thread.Sleep(500);
-            NetworkManager.CloseP2PConnectionServer(client);
+            Task.Run(() =>
+            {
+                Thread.Sleep(500);
+                NetworkManager.CloseP2PConnectionServer(client);
+            });
         }
         [HarmonyPatch(typeof(KickCommand), "Kick"), HarmonyPrefix]
         static bool KickCommand_Kick(ref string[] lineSplit)
