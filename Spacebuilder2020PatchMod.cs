@@ -3,6 +3,7 @@ using HarmonyLib;
 using StationeersMods.Interface;
 using System.IO;
 using System;
+using System.Threading;
 using Assets.Scripts.Localization2;
 using Assets.Scripts.Networking;
 using Assets.Scripts.Objects;
@@ -19,17 +20,10 @@ namespace Spacebuilder2020PatchMod
     {
         public override void OnLoaded(ContentHandler contentHandler)
         {
-            //READ THE README FIRST! 
-            
-            //Config example
-            // configBool = Config.Bind("Input",
-            //     "Boolean",
-            //     true,
-            //     "Boolean description");
-            
+            ConsoleWindow.Print("Loading Patches for Spacebuilder2020's PatchMod");
             Harmony harmony = new Harmony("Spacebuilder2020PatchMod");
             harmony.PatchAll();
-            ConsoleWindow.Print("Spacebuilder2020PatchMod Loaded!");
+            ConsoleWindow.Print("Patches Loaded!");
         }
     }
 
@@ -37,16 +31,19 @@ namespace Spacebuilder2020PatchMod
     class Spacebuilder2020Patches
     {
         [HarmonyPatch(typeof(NetworkServer), "HandleBlacklisting"), HarmonyPostfix]
-        static void NetworkServer_HandleBlacklisting(ref NetworkMessages.VerifyPlayer msg, ref Client client) =>
-            NetworkManager.CloseP2PConnectionServer(client);
+        static void NetworkServer_HandleBlacklisting(ref NetworkMessages.VerifyPlayer msg, ref Client client) => DelayedClose(client);
 
         [HarmonyPatch(typeof(NetworkServer), "HandleIncorrectPassword"), HarmonyPostfix]
-        static void NetworkServer_HandleIncorrectPassword(ref Client client) =>
-            NetworkManager.CloseP2PConnectionServer(client);
+        static void NetworkServer_HandleIncorrectPassword(ref Client client) => DelayedClose(client);
 
         [HarmonyPatch(typeof(NetworkServer), "HandleIncorrectVersion"), HarmonyPostfix]
-        static void NetworkServer_HandleIncorrectVersion(ref Client client, NetworkMessages.VerifyPlayer msg) => NetworkManager.CloseP2PConnectionServer(client);
+        static void NetworkServer_HandleIncorrectVersion(ref Client client, NetworkMessages.VerifyPlayer msg) => DelayedClose(client);
 
+        static void DelayedClose(Client client)
+        {
+            Thread.Sleep(500);
+            NetworkManager.CloseP2PConnectionServer(client);
+        }
         [HarmonyPatch(typeof(KickCommand), "Kick"), HarmonyPrefix]
         static bool KickCommand_Kick(ref string[] lineSplit)
         {
