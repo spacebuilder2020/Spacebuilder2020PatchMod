@@ -15,7 +15,7 @@ using Util.Commands;
 namespace Spacebuilder2020PatchMod
 {
     
-    [StationeersMod("Spacebuilder2020PatchMod", "Spacebuilder2020PatchMod [StationeersMods]", "1.0.0")]
+    [StationeersMod("Spacebuilder2020PatchMod", "Spacebuilder2020PatchMod [StationeersMods]", "1.2")]
     class Spacebuilder2020PatchMod : ModBehaviour
     {
         public override void OnLoaded(ContentHandler contentHandler)

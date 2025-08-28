@@ -2,7 +2,7 @@
 <ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name>Spacebuilder2020's PatchMod</Name>
   <Author>Spacebuilder2020</Author>
-  <Version>1.1</Version>
+  <Version>1.2</Version>
   <!-- Steam description using steam styling tags for Steam workshop page -->
   <Description>[h1]Spacebuilder2020's PatchMod[/h1]
     [b]WARNING:[/b] This is a StationeersLaunchPad Plugin Mod. It requires Bepinex to be installed with the StationeersLaunchPad plugin.
@@ -39,7 +39,7 @@ Fix decay time to take into account item max damage.
   <ChangeLog>
     [h3]Version 1.1:[/h3]
     [list]
-    [*] Improved Kick by steam id -- allows kicking players who are not fully joined and in the player list
+    [*] Add a short timeout to attempt to fix an issue where loading freezes the client after a rejection.
     [/list]
   </ChangeLog>
   <WorkshopHandle>3552686002</WorkshopHandle>
