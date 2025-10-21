@@ -57,7 +57,7 @@ namespace Spacebuilder2020PatchMod
         }
     }
     
-    [HarmonyPatch, GameVersion("0.0.0.0","0.2.5958.26183")]
+    [HarmonyPatch, GameVersion("0.0.0.0","0.2.5959.26190")]
     class Spacebuilder2020PatchesLegacy
     {
         [HarmonyPatch(typeof(NetworkServer), "HandleBlacklisting"), HarmonyPostfix]
