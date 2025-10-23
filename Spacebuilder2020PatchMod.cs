@@ -1,11 +1,6 @@
 ﻿using Assets.Scripts;
 using HarmonyLib;
 using StationeersMods.Interface;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Assets.Scripts.Networking;
@@ -24,72 +19,11 @@ namespace Spacebuilder2020PatchMod
         {
             ConsoleWindow.Print("Loading Patches for Spacebuilder2020's PatchMod");
             Harmony harmony = new Harmony("Spacebuilder2020PatchMod");
-            
-            AccessTools.GetTypesFromAssembly(typeof(Spacebuilder2020PatchMod).Assembly).Do(type =>
-            {
-                var ver = type.GetCustomAttributes(true).OfType<GameVersion>().FirstOrDefault();
-                var version = typeof(GameManager).Assembly.GetName().Version;
-                
-                if (ver != null && (ver.MinVersion > version || ver.MaxVersion < version) )
-                {
-                    Debug.Log($"Patch class {type.Name} ignored because game version does not match!");
-                    Debug.Log($"Current: {version} Min: {ver?.MinVersion} Max: {ver?.MaxVersion}");
-                    return;
-                }
-                new VersionAwareClassProcessor(harmony, type, version).Patch();
-            });
+            harmony.VersionAwarePatchAll();
             ConsoleWindow.Print("Patches Loaded!");
         }
     }
-    class VersionAwareClassProcessor : PatchClassProcessor
-    {
-        public VersionAwareClassProcessor(Harmony instance, Type type, Version version, bool allowUnannotatedType = false) : base(instance, type, allowUnannotatedType)
-        {
-            var patchMethods = (IList) typeof(PatchClassProcessor).GetField("patchMethods",  BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(this);
-            if (patchMethods == null || patchMethods.Count == 0)
-            {
-                return;
-            }
-            var attributePatchInfo = patchMethods[0].GetType().GetField("info", BindingFlags.NonPublic | BindingFlags.Instance);
-            
-            var toRemove = new List<object>();
-            if (attributePatchInfo == null)
-            {
-                return;
-            }
-            
-            foreach (var patchMethod in patchMethods)
-            {
-                var info = (HarmonyMethod) attributePatchInfo.GetValue(patchMethod);
-                GameVersion ver = info.method.GetCustomAttributes().OfType<GameVersion>().FirstOrDefault();
-                if (ver != null && (ver.MinVersion > version || ver.MaxVersion < version) )
-                {
-                    Debug.Log($"Patch in {type.Name}.{info.method.Name} for {info.declaringType.Name}.{info.methodName} ignored because game version does not match!");
-                    Debug.Log($"Current: {version} Min: {ver?.MinVersion} Max: {ver?.MaxVersion}");
-                    toRemove.Add(patchMethod);
-                }
-            }
-            
-            foreach (var patchMethod in toRemove)
-            {
-                patchMethods.Remove(patchMethod);
-            }
-        }
-    }
 
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    class GameVersion : Attribute
-    {
-        public Version MinVersion;
-        public Version MaxVersion;
-
-        public GameVersion(string minVersion, string maxVersion)
-        {
-            MinVersion = new Version(minVersion);
-            MaxVersion = new Version(maxVersion);
-        }
-    }
-    
     [GameVersion("0.0.0.0","0.2.0.0")]
     class SamplePatchClass
     {
