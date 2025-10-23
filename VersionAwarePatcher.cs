@@ -66,7 +66,7 @@ namespace Spacebuilder2020PatchMod
 
     public static class VersionAwarePatcher
     {
-        public static Harmony VersionAwarePatchAll(this Harmony harmony)
+        public static void VersionAwarePatchAll(this Harmony harmony)
         {
             AccessTools.GetTypesFromAssembly(new StackTrace().GetFrame(1).GetMethod().ReflectedType?.Assembly).Do(type =>
             {
@@ -81,7 +81,6 @@ namespace Spacebuilder2020PatchMod
                 }
                 new VersionAwareClassProcessor(harmony, type, version).Patch();
             });
-            return harmony;
         }
     }
 }
