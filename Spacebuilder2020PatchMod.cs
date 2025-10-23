@@ -23,16 +23,6 @@ namespace Spacebuilder2020PatchMod
             ConsoleWindow.Print("Patches Loaded!");
         }
     }
-
-    [GameVersion("0.0.0.0","0.2.0.0")]
-    class SamplePatchClass
-    {
-        [HarmonyPatch(typeof(NetworkServer), "HandleBlacklisting"), HarmonyPostfix]
-        static void NetworkServer_HandleBlacklisting(ref NetworkMessages.VerifyPlayer msg, ref Client client)
-        {
-            Debug.Log("HandleBlacklisting");
-        }
-    }
     
     [HarmonyPatch]
     class Spacebuilder2020Patches
