@@ -51,7 +51,7 @@ namespace Spacebuilder2020PatchMod
                 if (ver != null && (ver.MinVersion > version || ver.MaxVersion < version))
                 {
                     Debug.Log(
-                        $"Patch in {type.Name}.{info.method.Name} for {info.declaringType.Name}.{info.methodName} ignored because game version does not match!");
+                        $"Patch in {type.FullName}.{info.method.Name} for {info.declaringType.Name}.{info.methodName} ignored because game version does not match!");
                     Debug.Log($"Current: {version} Min: {ver?.MinVersion} Max: {ver?.MaxVersion}");
                     toRemove.Add(patchMethod);
                 }
@@ -75,7 +75,7 @@ namespace Spacebuilder2020PatchMod
                 
                 if (ver != null && (ver.MinVersion > version || ver.MaxVersion < version) )
                 {
-                    Debug.Log($"Patch class {type.Name} ignored because game version does not match!");
+                    Debug.Log($"Patch class {type.FullName} ignored because game version does not match!");
                     Debug.Log($"Current: {version} Min: {ver?.MinVersion} Max: {ver?.MaxVersion}");
                     return;
                 }
