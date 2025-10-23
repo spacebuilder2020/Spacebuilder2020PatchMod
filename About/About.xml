@@ -18,7 +18,7 @@
     
     Fix the decay time method to use the max damage value instead of hardcoding 100.
       Reason:  by default, the max damage value is set to 200 when items are initialized.  Thus, when an items time to decay is shown, it is inaccurate.
-    
+      Note: This patch will only apply on version `0.2.5959.26190` and before since this patch is in vanilla for newer versions
     Source Code: https://github.com/spacebuilder2020/Spacebuilder2020PatchMod
   </Description>
   <!-- Ingame Description using TMP tags for Workshop menu -->
@@ -33,6 +33,7 @@ Extends Kick to allow player name instead of steamid.
   Also fixes vanilla kick to work with longer ids or disconnected steam ids
 
 Fix decay time to take into account item max damage.
+  Note: This patch will only apply on version `0.2.5959.26190` and before since this patch is in vanilla for newer versions
 ]]>
   </InGameDescription>
   <!-- All contents of ChangeLog should be changed for each publication for Steam workshop page -->

@@ -12,3 +12,4 @@ This is a bug fix mod.  It may contain slight improvements for some features (i.
 
     Fix the decay time method to use the max damage value instead of hardcoding 100.
       Reason:  by default, the max damage value is set to 200 when items are initialized.  Thus, when an items time to decay is shown, it is inaccurate.
+      Note: This patch will only apply on version `0.2.5959.26190` and before since this patch is in vanilla for newer versions
