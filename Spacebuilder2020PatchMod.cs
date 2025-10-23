@@ -24,15 +24,11 @@ namespace Spacebuilder2020PatchMod
         {
             ConsoleWindow.Print("Loading Patches for Spacebuilder2020's PatchMod");
             Harmony harmony = new Harmony("Spacebuilder2020PatchMod");
-            var gameAssembly = typeof(GameManager).Assembly;
             
-            Debug.Log($"Game Version: {gameAssembly.GetName().Version}");
-            var assembly = typeof(Spacebuilder2020PatchMod).Assembly;
-            AccessTools.GetTypesFromAssembly(assembly).Do(type =>
+            AccessTools.GetTypesFromAssembly(typeof(Spacebuilder2020PatchMod).Assembly).Do(type =>
             {
-
                 var ver = type.GetCustomAttributes(true).OfType<GameVersion>().FirstOrDefault();
-                var version = gameAssembly.GetName().Version;
+                var version = typeof(GameManager).Assembly.GetName().Version;
                 
                 if (ver != null && (ver.MinVersion > version || ver.MaxVersion < version) )
                 {
