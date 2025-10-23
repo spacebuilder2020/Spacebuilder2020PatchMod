@@ -33,7 +33,7 @@ namespace Spacebuilder2020PatchMod
                 if (ver != null && (ver.MinVersion > version || ver.MaxVersion < version) )
                 {
                     Debug.Log($"Patch class {type.Name} ignored because game version does not match!");
-                    Debug.Log($"Type: {type.Name} Build: {version} Min: {ver?.MinVersion} Max: {ver?.MaxVersion}");
+                    Debug.Log($"Current: {version} Min: {ver?.MinVersion} Max: {ver?.MaxVersion}");
                     return;
                 }
                 new VersionAwareClassProcessor(harmony, type, version).Patch();
@@ -65,7 +65,7 @@ namespace Spacebuilder2020PatchMod
                 if (ver != null && (ver.MinVersion > version || ver.MaxVersion < version) )
                 {
                     Debug.Log($"Patch in {type.Name}.{info.method.Name} for {info.declaringType.Name}.{info.methodName} ignored because game version does not match!");
-                    Debug.Log($"Type: {type.Name} Build: {version} Min: {ver?.MinVersion} Max: {ver?.MaxVersion}");
+                    Debug.Log($"Current: {version} Min: {ver?.MinVersion} Max: {ver?.MaxVersion}");
                     toRemove.Add(patchMethod);
                 }
             }
