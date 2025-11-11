@@ -5,8 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Assets.Scripts.Networking;
 using Assets.Scripts.Objects;
+using LaunchPadBooster.Patching;
 using Steamworks;
-using UnityEngine;
 using Util.Commands;
 
 namespace Spacebuilder2020PatchMod
@@ -19,7 +19,7 @@ namespace Spacebuilder2020PatchMod
         {
             ConsoleWindow.Print("Loading Patches for Spacebuilder2020's PatchMod");
             Harmony harmony = new Harmony("Spacebuilder2020PatchMod");
-            harmony.VersionAwarePatchAll();
+            harmony.ConditionalPatchAll();
             ConsoleWindow.Print("Patches Loaded!");
         }
     }
@@ -95,7 +95,7 @@ namespace Spacebuilder2020PatchMod
         }
         
         [HarmonyPatch(typeof(Item), "UpdateDecayTimes"), HarmonyPrefix]
-        [GameVersion("0.0.0.0","0.2.5959.26190")]
+        [HarmonyGameVersionPatch("0.0.0.0","0.2.5959.26190")]
         static bool Item_UpdateDecayTimes(ref Item __instance) {
             Traverse.Create(__instance).Method("set_TimeToDecayFromNowInSeconds", 
                     (int) ((__instance.DamageState.MaxDamage - (double) __instance.DamageState.Decay) / ( __instance.CurrentDecayRate * 60.0)))
